@@ -3,7 +3,28 @@ package dsa.impl;
 import dsa.iface.INode;
 
 public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
+	
+	private class AVLNode extends BTNode{
+		private int height=0;
+		public AVLNode(T e, AbstractBinaryTree<T>.BTNode p) {
+			super(e, p);
+		}
+		
+		public AVLNode(T e, AbstractBinaryTree<T>.BTNode p, AbstractBinaryTree<T>.BTNode l,
+				AbstractBinaryTree<T>.BTNode r) {
+			super(e, p, l, r);
+		}
 
+		public int getHeight() {
+			return this.height;
+		}
+		
+		public void setHeight(int height) {
+			this.height=height;
+		}
+		
+	}
+	
    @Override
    public void insert( T element ) {
 	   super.insert(element);
@@ -70,13 +91,9 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
    
    private void restructure( INode<T> x ) {
 	   if(this.root==x) {
-		   System.out.println("查找到根元素");
-		   System.out.println("这次re的元素是"+x.element());
 		   check(x);
-		   System.out.println("restructure完成");
 		   return;
 	   }
-	   System.out.println("这次re的元素是"+x.element());
 	   BTNode  nextCheck=check(x);
 	   this.restructure(nextCheck);
    }
@@ -143,9 +160,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
    
    private INode<T> typeFour(BTNode temp,boolean reachRoot,boolean tempInLeft) {
 	   BTNode y=(AbstractBinaryTree<T>.BTNode) this.right(temp);
-	   BTNode z=y.right;
-	   System.out.println("y element "+y.element);
-	   System.out.println("z element"+z.element);
+//	   BTNode z=y.right;
  
 	   if(!reachRoot) {
 		   y.parent=(AbstractBinaryTree<T>.BTNode) this.parent(temp);
@@ -172,7 +187,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
    
    private INode<T> typeOne(BTNode temp, boolean reachRoot, boolean tempInLeft){
 	   BTNode y=(AbstractBinaryTree<T>.BTNode) this.left(temp);
-	   BTNode z=y.left;
+//	   BTNode z=y.left;
 
 	   if(!reachRoot) {
 		   y.parent=(AbstractBinaryTree<T>.BTNode) this.parent(temp);
@@ -191,8 +206,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   y.right=temp;
 	   temp.parent=y;
 	   //x on the right of y
-	   
-	   System.out.println("Type1 !");
 	   
 	   return y.parent;
    }
@@ -229,7 +242,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   z.right.parent=z;
 	   //y is on the right of z
 	   
-	   System.out.println("Type2 !");
 	   
 	   return z.parent;
    }
@@ -264,8 +276,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   z.left=y;
 	   y.parent=z;
 	   //y on the left of z
-	   
-	   System.out.println("Type3 !");
 	   
 	   return z.parent;
    }
