@@ -340,8 +340,8 @@ public class Main {
 	   
 	public static boolean compareTrees(IBinarySearchTree<Integer> avlt,IBinarySearchTree<Integer> avlt2) {
 		boolean equal=true;
-		IIterator t1Children=avlt.children(avlt.root());
-		IIterator t2Children=avlt2.children(avlt.root());
+		IIterator<?> t1Children=avlt.children(avlt.root());
+		IIterator<?> t2Children=avlt2.children(avlt.root());
 		while(t1Children.hasNext() && t2Children.hasNext()) {
 			if(!t1Children.next().equals(t2Children.next())) {
 				equal=false;
