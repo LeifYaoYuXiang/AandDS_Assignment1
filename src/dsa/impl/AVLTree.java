@@ -105,7 +105,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   if(iNode instanceof AVLTree.AVLNode) {
 		   return (AVLTree<T>.AVLNode) ((AVLTree.AVLNode) iNode).left;
 	   }else {
-		   System.err.println("CAST ERROR in find left");
+
 		   return null;
 	   } 
    }
@@ -115,7 +115,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   if(iNode instanceof AVLTree.AVLNode) {
 		   return (AVLTree<T>.AVLNode) ((AVLTree.AVLNode) iNode).right;
 	   }else {
-		   System.err.println("CAST ERROR in find right");
+
 		   return null;
 	   } 
    }
@@ -125,7 +125,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   if(iNode instanceof AVLTree.AVLNode) {
 		   return (AVLTree<T>.AVLNode) ((AVLTree.AVLNode) iNode).parent;
 	   }else {
-		   System.err.println("CAST ERROR in find parent");
+
 		   return null;
 	   } 
    }
@@ -142,7 +142,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
    public void remove( T element ) {
 	   INode<T> temp=find(this.root(),element);
 	   if(this.isExternal(temp)) {
-		   System.err.println("Trying to delete an invalid element");
+
 		   
 	   }else {
 		   AVLNode restructureStartNode=this.right(temp);
@@ -214,7 +214,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 			   }
 		   }
 	   }else {
-		   System.err.println("CAST ERROR");
+
 	   }
 	   
 	   if(temp.parent instanceof AVLTree.AVLNode) {
@@ -223,7 +223,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		   if(temp.element==this.root.element) {
 			   
 		   }else {
-			   System.err.println("CAST ERROR");
+
 		   }
 		   return null;
 	   }
@@ -255,7 +255,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 			   return false;
 		   }
 	   }else {
-		   System.err.println("Error Cast");
+
 		   return false;
 	   }	   
    }
@@ -339,7 +339,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		   ((AVLTree.AVLNode) temp).height=Math.max(this.left(temp).height,this.right(temp).height)+1;
 		   ((AVLTree.AVLNode) y).height=Math.max(this.left(y).height, this.right(y).height)+1;
 	   }else {
-		   System.err.println("CAST ERROR");
+
 	   }
 	   
 	   return y.parent;
@@ -377,7 +377,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		   ((AVLTree.AVLNode) temp).height=Math.max(this.left(temp).height,this.right(temp).height)+1;
 		   ((AVLTree.AVLNode) y).height=Math.max(this.left(y).height, this.right(y).height)+1;
 	   }else {
-		   System.err.println("CAST ERROR");
+
 	   }
 	   
 	   return y.parent;
@@ -426,7 +426,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		   ((AVLTree.AVLNode) y).height=Math.max(this.left(y).height, this.right(y).height)+1;
 		   ((AVLTree.AVLNode) z).height=Math.max(this.left(z).height, this.right(z).height)+1;
 	   }else {
-		   System.err.println("CAST ERROR");
+
 	   }
 	   
 	   return z.parent;
@@ -474,7 +474,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		   ((AVLTree.AVLNode) y).height=Math.max(this.left(y).height, this.right(y).height)+1;
 		   ((AVLTree.AVLNode) z).height=Math.max(this.left(z).height, this.right(z).height)+1;
 	   }else {
-		   System.err.println("CAST ERROR");
+
 	   }
 	   
 	   return z.parent;
@@ -492,7 +492,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   if(temp.parent instanceof AVLTree.AVLNode) {
 		   this.changeHeight((AVLTree<T>.AVLNode) temp.parent);  
 	   }else {
-		   System.err.println("CAST ERROR");
+
 	   }	   
    }
    
