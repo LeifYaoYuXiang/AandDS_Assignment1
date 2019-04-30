@@ -141,20 +141,25 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
    @Override
    public void remove( T element ) {
 	   INode<T> temp=find(this.root(),element);
-	   AVLNode restructureStartNode=this.right(temp);
-	   if(!this.isExternal(this.left(temp))&&!this.isExternal(this.right(temp))) {
-		   //it doesn't have any external children
-		   restructureStartNode=this.parent(this.nextBigger(restructureStartNode));
+	   if(this.isExternal(temp)) {
+		   System.err.println("Trying to delete an invalid element");
+		   
 	   }else {
-		   //it has one/two external children
-		   restructureStartNode=this.parent(temp);
+		   AVLNode restructureStartNode=this.right(temp);
+		   if(!this.isExternal(this.left(temp))&&!this.isExternal(this.right(temp))) {
+			   //it doesn't have any external children
+			   restructureStartNode=this.parent(this.nextBigger(restructureStartNode));
+		   }else {
+			   //it has one/two external children
+			   restructureStartNode=this.parent(temp);
+		   }
+		   
+		   super.remove(element);
+		   
+		   //change the height of ancestors of removed nodes and restructure the tree
+		   this.changeHeight(restructureStartNode);
+		   this.restructure(restructureStartNode);
 	   }
-	   
-	   super.remove(element);
-	   
-	   //change the height of ancestors of removed nodes and restructure the tree
-	   this.changeHeight(restructureStartNode);
-	   this.restructure(restructureStartNode);
    }
     
    /*@para:

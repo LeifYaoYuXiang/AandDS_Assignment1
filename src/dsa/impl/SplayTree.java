@@ -53,49 +53,54 @@ public class SplayTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		* - value: the value we want to remove
 		*/
 	   public void remove( T value ) {
+		   
 		   INode<T> n = find(this.root(),value); 
-		   
-		   //if the node has two internal children
-		   if(isInternal(left(n))&&isInternal(right(n))) {
-			   
-			   //get next biggest node
-			   INode<T> t = n;
-			   n = right(n);
-			   while(isInternal(left(n))) {
-				   n = left(n);
-			   }
-			   
-			   //swap the element of the node and its next biggest node
-			   T temp = t.element();
-			   replace(t,n.element());
-			   replace(n,temp);
-			   t = parent(n);
-			   
-			   //remove the 'next biggest' node now containing the value we want to remove and splay its parent
-			   super.remove(n);
-			   splay(t);
-			   size-=2;
-		   }
-		   
-		   //if the node has one or less internal child
-		   else {
-			   
-			   //if left node is internal
-			   if(isInternal(left(n))) {
-				   n = left(n);
-				   super.remove(value);
-				   splay(parent(n)); 
-				   size-=2;
-			   }
-			   
-			   //if right node is internal or there is no internal child
-			   else {
+		   if(this.isExternal(n)) {
+			   System.err.println("Trying to delete an invalid element");
+		   }else {
+			 //if the node has two internal children
+			   if(isInternal(left(n))&&isInternal(right(n))) {
+				   
+				   //get next biggest node
+				   INode<T> t = n;
 				   n = right(n);
-				   super.remove(value);
-				   splay(parent(n)); 
+				   while(isInternal(left(n))) {
+					   n = left(n);
+				   }
+				   
+				   //swap the element of the node and its next biggest node
+				   T temp = t.element();
+				   replace(t,n.element());
+				   replace(n,temp);
+				   t = parent(n);
+				   
+				   //remove the 'next biggest' node now containing the value we want to remove and splay its parent
+				   super.remove(n);
+				   splay(t);
 				   size-=2;
 			   }
+			   
+			   //if the node has one or less internal child
+			   else {
+				   
+				   //if left node is internal
+				   if(isInternal(left(n))) {
+					   n = left(n);
+					   super.remove(value);
+					   splay(parent(n)); 
+					   size-=2;
+				   }
+				   
+				   //if right node is internal or there is no internal child
+				   else {
+					   n = right(n);
+					   super.remove(value);
+					   splay(parent(n)); 
+					   size-=2;
+				   }
+			   }
 		   }
+		   
 	   }
 
 	   
