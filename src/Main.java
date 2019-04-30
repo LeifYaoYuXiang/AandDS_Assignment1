@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import dsa.iface.IBinarySearchTree;
 import dsa.iface.IIterator;
+import dsa.iface.INode;
 import dsa.impl.AVLTree;
 import dsa.impl.BinarySearchTree;
 import dsa.impl.SplayTree;
@@ -338,12 +339,17 @@ public class Main {
 		   TreePrinter.printTree(st);
 	   }
 	   
-	public static boolean compareTrees(IBinarySearchTree<Integer> avlt,IBinarySearchTree<Integer> avlt2) {
+	public static boolean compareTrees(IBinarySearchTree<Integer> bt1,IBinarySearchTree<Integer> bt2) {
 		boolean equal=true;
-		IIterator<?> t1Children=avlt.children(avlt.root());
-		IIterator<?> t2Children=avlt2.children(avlt.root());
+		IIterator t1Children=bt1.children(bt1.root());
+		IIterator<?> t2Children=bt2.children(bt2.root());
 		while(t1Children.hasNext() && t2Children.hasNext()) {
-			if(!t1Children.next().equals(t2Children.next())) {
+			INode<Integer> temp1=(INode) t1Children.next();
+			INode<Integer> temp2=(INode) t2Children.next();
+			if(temp1.element()!=temp2.element()||//t1Children.next().equals(t2Children.next())||
+			bt1.parent(temp1).element()!=bt2.parent(temp2).element()||
+			bt1.right(temp1).element()!=bt2.right(temp2).element()||
+			bt1.left(temp1).element()!=bt2.left(temp2).element()) {
 				equal=false;
 				break;
 			}
