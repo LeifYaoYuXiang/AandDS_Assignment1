@@ -56,7 +56,7 @@ public class SplayTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		   
 		   INode<T> n = find(this.root(),value); 
 		   if(this.isExternal(n)) {
-			   System.err.println("Trying to delete an invalid element");
+
 		   }else {
 			 //if the node has two internal children
 			   if(isInternal(left(n))&&isInternal(right(n))) {
