@@ -320,9 +320,9 @@ public class Main {
 					if(operation.equals("c")) {
 						//c standing for contains
 						if(st.contains(element)) {
-							System.out.println("AVLTree has "+element);
+							System.out.println("SplayTree has "+element);
 						}else {
-							System.out.println("AVLTree doesn't have "+element);
+							System.out.println("SplayTree doesn't have "+element);
 						}
 					}
 					if(operation.equals("r")) {
