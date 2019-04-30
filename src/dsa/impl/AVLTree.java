@@ -105,7 +105,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   if(iNode instanceof AVLTree.AVLNode) {
 		   return (AVLTree<T>.AVLNode) ((AVLTree.AVLNode) iNode).left;
 	   }else {
-
 		   return null;
 	   } 
    }
@@ -115,7 +114,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   if(iNode instanceof AVLTree.AVLNode) {
 		   return (AVLTree<T>.AVLNode) ((AVLTree.AVLNode) iNode).right;
 	   }else {
-
 		   return null;
 	   } 
    }
@@ -125,7 +123,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 	   if(iNode instanceof AVLTree.AVLNode) {
 		   return (AVLTree<T>.AVLNode) ((AVLTree.AVLNode) iNode).parent;
 	   }else {
-
 		   return null;
 	   } 
    }
@@ -142,7 +139,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
    public void remove( T element ) {
 	   INode<T> temp=find(this.root(),element);
 	   if(this.isExternal(temp)) {
-
 		   
 	   }else {
 		   AVLNode restructureStartNode=this.right(temp);
@@ -223,7 +219,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		   if(temp.element==this.root.element) {
 			   
 		   }else {
-
 		   }
 		   return null;
 	   }
